@@ -1,0 +1,25 @@
+{
+  "name": "tink_hxx",
+  "license": "MIT",
+  "tags": [
+    "tink",
+    "hxx",
+    "jsx",
+    "vdom",
+    "dom",
+    "template",
+    "cross"
+  ],
+  "classPath": "src",
+  "contributors": [
+    "back2dos"
+  ],
+  "releasenote": "Various fixes.",
+  "version": "0.23.0",
+  "url": "https://github.com/haxetink/tink_hxx/",
+  "dependencies": {
+    "html-entities": "",
+    "tink_parse": "",
+    "tink_anon": ""
+  }
+}

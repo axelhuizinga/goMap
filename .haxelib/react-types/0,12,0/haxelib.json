@@ -1,0 +1,17 @@
+{
+  "name": "react-types",
+  "description": "Additional typings for react libs",
+  "version": "0.12.0",
+  "releasenote": "Refactoring (with proxies for compat.), EitherType<...>, ForcedOverride<...>",
+  "url": "https://github.com/kLabz/haxe-react-types",
+  "license": "MIT",
+  "tags": [],
+  "classPath": "src",
+  "dependencies": {
+    "css-types": ""
+  },
+  "contributors": [
+    "klabz"
+  ]
+}
+

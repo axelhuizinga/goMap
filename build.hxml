@@ -1,0 +1,21 @@
+-lib haxe-loader
+#-lib history
+-lib hxbit
+-lib react-next
+-lib react-types
+#-lib redux
+-lib CommentString
+#-lib event-types 
+#-lib js-object
+#-lib tink_core
+-cp /opt/src/lib
+#-cp ../lib
+#-cp lib
+-cp src
+
+-js httpdocs/js/goMap.js
+-dce std
+#--no-traces
+#-D eval-stack
+-main Go
+#-cmd rsync -rav --size-only -e "ssh -p 666 -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress ../httpdocs/js ../httpdocs/css  ../httpdocs/index.php ../httpdocs/webfonts root@pitverwaltung.de:/var/www/vhosts/pitverwaltung.de/httpdocs
