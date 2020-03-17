@@ -17,7 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // Options
 const debugMode = buildMode !== 'production';
 const dir = __dirname;
-const dist = path.join(__dirname, "/../httpdocs");
+const dist = path.join(__dirname, "/httpdocs");
 //const dist = path.resolve(__dirname, "./httpdocs");
 console.log('Output Directory:' + dist);
 console.log(`projectDirectory:${dir} isProd:`+ isProd +  ` debugMode:${debugMode}`);
@@ -49,54 +49,6 @@ module.exports = {
     // Sourcemaps option for development
     devtool: sourcemapsMode,
     // Live development server (serves from memory)
-    devServer: {
-        contentBase: dist,
-        compress: true,
-        host:  devHost,
-        https:{
-            key: fs.readFileSync(path.resolve(__dirname, localConf.key)),
-            cert: fs.readFileSync(path.resolve(__dirname, localConf.cert)),
-        },
-        port: 9000,
-        overlay: false,
-        lazy: false,
-        hot:true,
-        disableHostCheck: true,
-        headers: {
-        //    "Access-Control-Allow-Origin": "https://econet4.me",
-            "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials":true,
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-		},	       
-	    historyApiFallback: {
-            index: '/'
-        },
-		index: 'goMap.html',
-		staticOptions:{
-			index:false
-		},
-		publicPath: '/',
-		stats: {
-			children: true,
-
-			// Add chunk information (setting this to `false` allows for a less verbose output)
-			chunks: true,
-		
-			// Add namedChunkGroups information
-			chunkGroups: true,
-		
-			// Add built modules information to chunk information
-			chunkModules: true,
-		
-			// Add the origins of chunks and chunk merging info
-			chunkOrigins: true,
-			errorDetails: true,
-			entrypoints: true,
-			providedExports: true
-		}
-	},
-
     watch: (isProd ? false: true),
 	watchOptions:{
 		ignored: ['httpdocs']

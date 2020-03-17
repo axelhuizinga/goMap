@@ -72,7 +72,6 @@ typedef UIState =
 class UiView extends ReactComponentOf<UIProps, UIState>
 {
 	var browserHistory:History;
-	var dispatchInitial:Dispatch;
 	var mounted:Bool;
 	//static var _me:UiView;
 
@@ -166,8 +165,8 @@ class UiView extends ReactComponentOf<UIProps, UIState>
 		}
 		else
 		{			
-			trace('render Router ' + browserHistory.location.pathname);
-			trace('render Router ' + App.store.getState().locationStore.history.location.pathname);
+			trace(browserHistory.location.pathname);
+			trace(App.store.getState().locationStore.history.location.pathname);
 			//trace(App.store.getState());
 			trace(App.store.getState().locationStore.history == browserHistory);
 			if(browserHistory.location.pathname!=App.store.getState().locationStore.redirectAfterLogin)

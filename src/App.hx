@@ -268,7 +268,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 		//trace(state.history.location.pathname);	store={store}	<UiView/>	<div>more soon...</div>
         return jsx('
 			<$Provider store={store}>
-				<$IntlProvider locale="de">
+				<$IntlProvider locale="en">
 					<$UiView/>
 				</$IntlProvider>
 			</$Provider>
