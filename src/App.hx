@@ -21,11 +21,11 @@ import me.cunity.debug.Out;
 import view.UiView;
 import action.AppAction;
 import action.ConfigAction;
-import action.DataAction;
+//import action.DataAction;
 import action.LocationAction;
 import action.StatusAction;
 import action.UserAction;
-import action.async.UserAccess;
+import loader.UserAccess;
 import state.AppState;
 import state.CState;
 import state.ConfigState;
@@ -269,7 +269,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
         return jsx('
 			<$Provider store={store}>
 				<$IntlProvider locale="en">
-					<$UiView/>
+					dummy
 				</$IntlProvider>
 			</$Provider>
         ');
