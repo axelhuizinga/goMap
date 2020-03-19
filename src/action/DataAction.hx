@@ -3,8 +3,8 @@ package action;
 import haxe.Constraints.Function;
 import haxe.ds.IntMap;
 import shared.DbData;
-import action.async.DBAccess;
-import action.async.DBAccessProps;
+import loader.DBAccess;
+import loader.DBAccessProps;
 /**
  * ...
  * @author axel@cunity.me

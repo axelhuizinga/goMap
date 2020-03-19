@@ -1,6 +1,6 @@
-package db;
-import db.DbUser;
-import db.DbRelation;
+package loader;
+import loader.DbUser;
+import loader.DbRelation;
 import haxe.ds.Map;
 import hxbit.Schema;
 import hxbit.Serializable;

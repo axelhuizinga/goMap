@@ -1,16 +1,16 @@
 -lib haxe-loader
-#-lib history
--lib hxbit
+-lib history
+#-lib hxbit
 -lib react-next
 -lib react-types
-#-lib redux
+-lib redux
 -lib CommentString
 #-lib event-types 
 #-lib js-object
 #-lib tink_core
 -cp /opt/src/lib
 #-cp ../lib
-#-cp lib
+-cp lib
 -cp src
 
 -js httpdocs/js/goMap.js

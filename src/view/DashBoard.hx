@@ -1,6 +1,6 @@
 package view;
 
-import action.async.UserAccess;
+import loader.UserAccess;
 import action.ConfigAction;
 import state.UserState;
 import react.ReactType;

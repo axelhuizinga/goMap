@@ -19,7 +19,7 @@ import react.ReactComponent.ReactComponentOf;
 import react.ReactMacro.jsx;
 import react.ReactUtil.copy;
 import redux.Redux;
-import action.async.UserAccess;
+import loader.UserAccess;
 import view.shared.RouteTabProps;
 
 using shared.Utils;

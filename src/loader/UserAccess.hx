@@ -1,15 +1,14 @@
 package loader;
 
 import js.lib.Promise;
-import db.DbRelation;
-import db.DbUser;
+import loader.DbRelation;
+import loader.DbUser;
 import js.html.svg.Point;
 import action.AppAction;
 import action.UserAction;
 import haxe.http.HttpJs;
 import haxe.Json;
 import haxe.Serializer;
-import loader.BinaryLoader;
 import react.ReactUtil.copy;
 import redux.Redux;
 import redux.StoreMethods;
@@ -21,13 +20,13 @@ import js.html.XMLHttpRequest;
 import shared.DbData;
 import state.AppState;
 import state.UserState;
-import view.shared.OneOf;
+import shared.OneOf;
 using DateTools;
 using Lambda;
 
 class UserAccess {
 
-	public static function changePassword(userState:UserState) 
+	/*public static function changePassword(userState:UserState) 
 	{
 		trace(userState);
 		return Thunk.Action(function(dispatch:Dispatch, getState:Void->AppState)
@@ -136,7 +135,7 @@ class UserAccess {
 			);	
 			return null;
 		});
-	}
+	}*/
 
 	public static function jwtCheck(data:DbData) 
 	{
@@ -151,7 +150,7 @@ class UserAccess {
 		return null;
 	}
 
-	public static function doLogin(userState:UserState, ?requests:Array<OneOf<HttpJs, XMLHttpRequest>>) 
+	/*public static function doLogin(userState:UserState, ?requests:Array<OneOf<HttpJs, XMLHttpRequest>>) 
 	{
 		return Thunk.Action(function(dispatch:Dispatch, getState:Void->AppState){
 			if(userState.dbUser.mandator==null)
@@ -231,7 +230,7 @@ class UserAccess {
 			}
 			return null;
 		});
-	}
+	}*/
 
 	public static function loginReq(userState:UserState, ?requests:Array<OneOf<HttpJs, XMLHttpRequest>>) 
 	{
@@ -248,7 +247,8 @@ class UserAccess {
 	/**
 	 * 
 	 */
-	public static function logOut() 
+	
+	/* public static function logOut() 
 	{
 		return Thunk.Action(function(dispatch:Dispatch, getState:Void->AppState){
 			trace(getState().userState);
@@ -286,9 +286,9 @@ class UserAccess {
 			});
 			return null;
 		});		
-	}
+	}*/
 
-	public static function verify() {
+	/*public static function verify() {
 		//CHECK IF WE HAVE A VALID SESSION
 		return Thunk.Action(function(dispatch:Dispatch, getState:Void->AppState){
 			//trace('clientVerify');
@@ -327,13 +327,6 @@ class UserAccess {
 					{
 						trace(data.dataErrors);
 						return resolve(data);
-						/*return dispatch(User(LoginError(
-						{
-							//dbUser:state.userState.dbUser, 
-							lastError:data.dataErrors.iterator().next(),
-							loginTask: data.dataInfo['loginTask'],
-							waiting: false
-						})));*/
 					}	
 					var uData = data.dataRows[0];
 					//var uProps:Dynamic = {};
@@ -359,7 +352,7 @@ class UserAccess {
 				});
 			});
 		});	
-	}
+	}*/
 /**
  * 
  */

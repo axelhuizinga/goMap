@@ -1,8 +1,8 @@
 package store;
 
-import db.DbUser;
+import loader.DbUser;
 import js.Browser;
-import action.async.UserAccess;
+import loader.UserAccess;
 import action.UserAction;
 import js.Cookie;
 import react.ReactUtil.copy;

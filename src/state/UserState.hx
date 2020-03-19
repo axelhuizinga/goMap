@@ -1,6 +1,6 @@
 package state;
-import db.DbUser;
-import db.LoginTask;
+import loader.DbUser;
+import loader.LoginTask;
 
 typedef UserState =
 {

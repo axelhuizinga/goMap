@@ -1,9 +1,4 @@
-package lib.google.maps;
-
-typedef LatLngLiteral = {
-	lat:Float,
-	lng:Float
-}
+package google.maps;
 
 extern class LatLng {
 	public function new(lat:Float, lng:Float, ?noWrap:Bool);

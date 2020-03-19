@@ -1,13 +1,12 @@
-package db;
+package loader;
 import haxe.ds.StringMap;
-import hxbit.Serializable;
 
-class DbRelation implements hxbit.Serializable{
+class DbRelation{
 
-	@:s public var alias:String;
-	@:s public var fields:Array<String>;
-	@:s public var filter:Dynamic;
-	@:s public var jCond:String;
+	public var alias:String;
+	public var fields:Array<String>;
+	public var filter:Dynamic;
+	public var jCond:String;
 
 	public function new(p:Dynamic){
 		

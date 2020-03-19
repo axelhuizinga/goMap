@@ -1,7 +1,7 @@
 import js.lib.Promise;
 import react.ReactUtil;
 import haxe.macro.Expr.Catch;
-import store.DataStore;
+//import store.DataStore;
 import haxe.Constraints.Function;
 import haxe.Timer;
 import haxe.Serializer;
@@ -18,21 +18,20 @@ import history.TransitionManager;
 import js.Browser;
 
 import me.cunity.debug.Out;
-import view.UiView;
+
 import action.AppAction;
 import action.ConfigAction;
 //import action.DataAction;
-import action.LocationAction;
+//import action.LocationAction;
 import action.StatusAction;
 import action.UserAction;
 import loader.UserAccess;
 import state.AppState;
-import state.CState;
 import state.ConfigState;
 import state.FormState;
 import store.AppStore;
 import store.ConfigStore;
-import store.LocationStore;
+//import store.LocationStore;
 import store.StatusStore;
 import store.UserStore;
 import react.React;
@@ -47,6 +46,7 @@ import redux.Store;
 import redux.StoreBuilder.*;
 import redux.thunk.Thunk;
 import redux.thunk.ThunkMiddleware;
+import shared.DbData;
 //import view.shared.io.FormApi;
 //import view.shared.FormBuilder;
 
@@ -68,7 +68,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	
 	public static var store:Store<AppState>;
 	public static var devIP = Webpack.require('../webpack.local.js').ip;
-	public static var config:ConfigState = Webpack.require('../../httpdocs/config.js').config;
+	public static var config:ConfigState = {api:'https://econet4.me/wp-json/wp/v2'};//Webpack.require('httpdocs/config.js').config;
 	//public static var flatpickr:Function = Webpack.require('flatpickr');
 	//public static var German = js.Lib.require('flatpickr/dist/l10n/de.js');
 	//static var flat = js.Lib.require('flatpickr/dist/flatpickr.min.css');
@@ -90,13 +90,13 @@ class App  extends ReactComponentOf<AppProps, AppState>
 		var userStore = new UserStore();
 		trace(Reflect.fields(userStore));
 		var appWare = new AppStore(userStore);
-		var locationStore =  new LocationStore(history);
+		//var locationStore =  new LocationStore(history);
 
 		var rootReducer = Redux.combineReducers(
 		{
 			//app:mapReducer(AppAction, appWare),
 			config: mapReducer(ConfigAction, new ConfigStore(config)),
-			dataStore: mapReducer(DataAction, new DataStore()),
+			//dataStore: mapReducer(DataAction, new DataStore()),
 			//locationStore: mapReducer(LocationAction,locationStore),
 			status: mapReducer(StatusAction, new StatusStore()),
 			userState: mapReducer(UserAction, userStore)
@@ -109,7 +109,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 		Redux.applyMiddleware(
 			mapMiddleware(Thunk, new ThunkMiddleware()),
 			mapMiddleware(AppAction, appWare),
-			mapMiddleware(LocationAction, locationStore),
+			//mapMiddleware(LocationAction, locationStore),
 			mapMiddleware(UserAction, userStore)
 			)
 		);
@@ -131,7 +131,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	private function saveToLocalStorage(){
 		try{
 			//trace('storing ${state.dataStore} locally');
-			Browser.getLocalStorage().setItem('state', Serializer.run(store.getState().dataStore));
+			//Browser.getLocalStorage().setItem('state', Serializer.run(store.getState().dataStore));
 			//trace( Unserializer.run(Browser.getLocalStorage().getItem('state')));
 		}catch(e:Dynamic){
 			trace(e);
@@ -141,19 +141,19 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	static function startHistoryListener(store:Store<AppState>, history:History):TUnlisten
 	{
 		//trace(history);
-		store.dispatch(Location(InitHistory(history/*,
+		/*store.dispatch(Location(InitHistory(history/*,
 		{
 			pathname:store.getState().locationStore.redirectAfterLogin,
 			search:'',
 			hash:'',
 			key:'',
 			state:{}
-		}*/)));
+		})));*/
 	
 		return history.listen( function(location:Location, action:history.Action){
 			trace(location.pathname);			
 			store.dispatch(Status(Update({text:location.pathname})));
-			store.dispatch(LocationChange(location));
+			//store.dispatch(LocationChange(location));
 		});
 	}	
 
@@ -165,11 +165,11 @@ class App  extends ReactComponentOf<AppProps, AppState>
 		//ReactIntl.addLocaleData({locale:'de'});
 		_app = this;
 		var ti:Timer = null;
-		store = initStore(BrowserHistory.create({basename:"/", getUserConfirmation:CState.confirmTransition}));
+		store = initStore(BrowserHistory.create({basename:"/"}));
 		state = store.getState();
 		trace(Reflect.fields(state));
 		//trace(state);
-		tul = startHistoryListener(store, state.locationStore.history);
+		//tul = startHistoryListener(store, state.locationStore.history);
 		//store.subscribe(saveToLocalStorage);
 		//var uBCC:Dynamic = react.WinCom.useBrowserContextCommunication('appGlobal');
 
@@ -224,8 +224,9 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	}
 	
 	function load():Promise<DbData> {
-		return cast store.dispatch(
-			action.async.UserAccess.verify());
+		/*return cast store.dispatch(
+			loader.UserAccess.verify());*/
+			return new Promise(null);
 	}
 
 	public function gGet(key:String):Dynamic
@@ -299,11 +300,10 @@ class App  extends ReactComponentOf<AppProps, AppState>
 		var fS:FormState =
 		{
 			clean: true,
-			formApi:new FormApi(comp, init.sideMenu),
-			formBuilder:new FormBuilder(comp),
+			/*formApi:new FormApi(comp, init.sideMenu),
+			formBuilder:new FormBuilder(comp),*/
 			hasError: false,
-			mounted: false,
-			sideMenu: init==null? {}:init.sideMenu
+			mounted: false
 		};
 		if(init != null)
 		{

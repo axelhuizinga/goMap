@@ -1,7 +1,7 @@
 package store;
-import action.async.UserAccess;
+import loader.UserAccess;
 import state.UserState;
-import action.DataAction;
+//import action.DataAction;
 import react.ReactSharedInternals.Update;
 import App;
 import action.AppAction;
@@ -16,10 +16,9 @@ import react.ReactUtil.copy;
 import redux.IMiddleware;
 import redux.IReducer;
 import redux.StoreMethods;
-import react.router.ReactRouter;
 import history.BrowserHistory;
 import history.History;
-import state.CState;
+//import state.CState;
 import state.AppState;
 import state.StatusState;
 import Webpack.*;
@@ -85,7 +84,7 @@ class AppStore
 		{
 			case ApplySubState(subState):
 				copy(state,subState);
-			case Data(dataAction):
+			/*case Data(dataAction):
 				trace(dataAction);
 				switch (dataAction)
 				{
@@ -97,7 +96,7 @@ class AppStore
 						state;
 				}
 				
-			/*case FormChange(cfp, fState):
+			case FormChange(cfp, fState):
 				var formStates = state.formStates;
 				if(formStates.exists(cfp))
 				{
@@ -137,9 +136,9 @@ class AppStore
 			//case Thunk.Action(f):
 				//store.dispatch(action);
 			case Status(action):	
-				store.dispatch(action);*/
-			case Location(action):
 				store.dispatch(action);
+			case Location(action):
+				store.dispatch(action);*/
 			case User(action):
 				store.dispatch(action);
 			//default: next();
