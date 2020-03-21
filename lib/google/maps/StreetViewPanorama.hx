@@ -6,7 +6,7 @@ extern class StreetViewPanorama {
 
 	public function new(container:Element, ?opts:StreetViewPanoramaOptions);
 
-	public function getLinks();
+	public function getLinks():Array<StreetViewLink>;
 	//TODO: COMPLETE METHODS
 	
 }

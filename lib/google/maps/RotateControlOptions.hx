@@ -2,6 +2,7 @@ package google.maps;
 
 import google.maps.ControlPosition;
 
-typedef ZoomControlOptions = {
-	position:ControlPosition
+typedef RotateControlOptions = 
+{
+	positon:ControlPosition
 }

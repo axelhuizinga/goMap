@@ -1,5 +1,6 @@
 const localConf = require('./webpack.local');
 const devHost = localConf.ip;
+const devServerHttps = localConf.devServerHttps;
 const fs = require('fs');
 const path = require('path');
 
@@ -31,7 +32,7 @@ module.exports = {
     // List all the JS modules to create
     // They will all be linked in the HTML page
     entry: {
-        app: './build.hxml'
+        goMap: './build.hxml'
     },
    //"info-verbosity":'verbose',
     mode: buildMode,
@@ -39,7 +40,7 @@ module.exports = {
     output: {
         path: dist,
         filename: 'js/[name].js',
-		publicPath: '/'
+		publicPath: './'
     },
     // Module resolution options (alias, default paths,...)
     resolve: {
@@ -49,10 +50,66 @@ module.exports = {
     // Sourcemaps option for development
     devtool: sourcemapsMode,
     // Live development server (serves from memory)
+    devServer: {
+        //public:'https://'+devHost+':9000',
+         //contentBase: './httpdocs/', //gives me directory listing in the browser
+        contentBase: dist,
+        compress: true,
+        host:  devHost,
+        https:{
+            key: fs.readFileSync(path.resolve(__dirname, localConf.key)),
+            cert: fs.readFileSync(path.resolve(__dirname, localConf.cert)),
+        },
+        port: 8000,
+        overlay: false,
+        lazy: false,
+        hot:true,
+        disableHostCheck: true,
+        //inline: false,
+        //useLocalIp: true,
+        headers: {
+            "Access-Control-Allow-Origin": "https://econet4.me",
+            "Access-Control-Allow-Origin": "*",
+	        "Access-Control-Allow-Credentials":true,
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+		},	       
+	    historyApiFallback: {
+            index: '/'
+        },
+		index: 'goMap.html',
+		staticOptions:{
+			index:false
+		},
+		//publicPath: __dirname + '../httpdocs/'
+		publicPath: '/',
+			// Accepted values: none, errors-only, minimal, normal, detailed, verbose
+			// Any other falsy value will behave as 'none', truthy values as 'normal'	
+		stats: {
+			children: true,
+
+			// Add chunk information (setting this to `false` allows for a less verbose output)
+			chunks: true,
+		
+			// Add namedChunkGroups information
+			chunkGroups: true,
+		
+			// Add built modules information to chunk information
+			chunkModules: true,
+		
+			// Add the origins of chunks and chunk merging info
+			chunkOrigins: true,
+			errorDetails: true,
+			entrypoints: true,
+			providedExports: true
+		}
+	},
+
     watch: (isProd ? false: true),
 	watchOptions:{
+		//aggregateTimeout:1500,
 		ignored: ['httpdocs']
-	},    
+	},     
     // List all the processors
     module: {
         rules: [

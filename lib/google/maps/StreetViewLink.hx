@@ -1,6 +1,6 @@
 package google.maps;
 
-interface StreetViewLink {
+typedef StreetViewLink = {
 
 	?description:String,
 	?heading:Int,

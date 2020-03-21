@@ -1,3 +1,4 @@
+import view.UiView;
 import js.lib.Promise;
 import react.ReactUtil;
 import haxe.macro.Expr.Catch;
@@ -25,6 +26,7 @@ import action.ConfigAction;
 //import action.LocationAction;
 import action.StatusAction;
 import action.UserAction;
+import view.DrawingMap;
 import loader.UserAccess;
 import state.AppState;
 import state.ConfigState;
@@ -98,7 +100,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 			config: mapReducer(ConfigAction, new ConfigStore(config)),
 			//dataStore: mapReducer(DataAction, new DataStore()),
 			//locationStore: mapReducer(LocationAction,locationStore),
-			status: mapReducer(StatusAction, new StatusStore()),
+			//status: mapReducer(StatusAction, new StatusStore()),
 			userState: mapReducer(UserAction, userStore)
 		});
 		//var dataStore:DataAccessState = loadFromLocalStorage();
@@ -161,7 +163,7 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	{
 		super(props);
 		//globalState = new Map();
-		untyped flatpickr.localize(German);
+		//untyped flatpickr.localize(German);
 		//ReactIntl.addLocaleData({locale:'de'});
 		_app = this;
 		var ti:Timer = null;
@@ -226,7 +228,10 @@ class App  extends ReactComponentOf<AppProps, AppState>
 	function load():Promise<DbData> {
 		/*return cast store.dispatch(
 			loader.UserAccess.verify());*/
-			return new Promise(null);
+			return new Promise(function(resolve, reject){
+				trace(resolve);
+				trace(reject);
+			});
 	}
 
 	public function gGet(key:String):Dynamic
@@ -267,14 +272,18 @@ class App  extends ReactComponentOf<AppProps, AppState>
   	override function render() {
 		trace(state.userState);
 		//trace(state.history.location.pathname);	store={store}	<UiView/>	<div>more soon...</div>
+		//<div>${rdump(store)}</div><$DrawingMap /><$IntlProvider locale="en"></$IntlProvider>				
         return jsx('
 			<$Provider store={store}>
-				<$IntlProvider locale="en">
-					dummy
-				</$IntlProvider>
+				<$DrawingMap userState=${state.userState}/>
 			</$Provider>
         ');
-  	}
+	}
+	  
+	function rdump(w:Dynamic){
+		trace(w.getState());
+		return 'dummy';
+	}
 
 	public static function 	await(delay:Int, check:Void->Dynamic, cb:Function):Timer
 	{

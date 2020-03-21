@@ -1,8 +1,8 @@
 package google.maps;
 
 enum abstract MapTypeId(String) {
-	HYBRID:'hybrid',
-	ROADMAP:'roadmap',
-	SATELLITE:'satellite',
-	TERRAIN:'terrain'
+	var HYBRID = 'hybrid';
+	var ROADMAP = 'roadmap';
+	var SATELLITE = 'satellite';
+	var TERRAIN = 'terrain';
 }
