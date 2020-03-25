@@ -1,4 +1,0 @@
-package react;
-
-typedef Empty = {}
-

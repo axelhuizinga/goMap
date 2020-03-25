@@ -1,6 +1,0 @@
--cp src
--js .build/lib.js
-
-js.Symbol
-js.Object
-
