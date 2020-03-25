@@ -1,4 +1,6 @@
 .haxelib
 .vscode
 node_modules
+res/goMap.html
+httpdocs/goMap.html
 

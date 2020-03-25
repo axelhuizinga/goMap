@@ -202,7 +202,8 @@ class DrawingMap extends ReactComponentOf<DrawingMapProps, DrawingMapState>
 		var style = 
 		{
 			width:'90%',
-			height:'90%'
+			height:'90%',
+			margin:'auto auto 1rem'
 		};
 		
 		if (state.waiting)
@@ -222,6 +223,9 @@ class DrawingMap extends ReactComponentOf<DrawingMapProps, DrawingMapState>
 		 */
 		return jsx('
 			<section className="hero is-alt is-fullheight">
+				<form name="myMap" class="formField">
+				<label>Location:</label><input name="location" />
+				</form>
 				<div className="formBox is-rounded" style=${style} id="map">
 					<div className="form22" >	
 					</div>
